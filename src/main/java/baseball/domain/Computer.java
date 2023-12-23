@@ -9,12 +9,15 @@ public class Computer {
 
     public Computer(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
-        refreshAnswer();
     }
 
     public void refreshAnswer() {
         List<Integer> answer = numberGenerator.generateUniqueNumbers(
                 NumberSlot.MIN_RANGE, NumberSlot.MAX_RANGE, NumberSlot.SIZE);
         this.numberSlot = new NumberSlot(answer);
+    }
+
+    public BaseballCount calculateBallCount(NumberSlot playerNumbers) {
+        return numberSlot.calculate(playerNumbers);
     }
 }
