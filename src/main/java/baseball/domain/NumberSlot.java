@@ -3,9 +3,9 @@ package baseball.domain;
 import java.util.List;
 
 public class NumberSlot {
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 9;
-    private static final int SIZE = 3;
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 9;
+    public static final int SIZE = 3;
 
     private final List<Integer> numbers;
 
