@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,5 +52,19 @@ class NumberSlotTest {
         List<Integer> numbers = List.of(0, 1, 2);
         // when, then
         assertThatThrownBy(() -> new NumberSlot(numbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("스트라이크, 볼을 정확하게 계산한다")
+    void calculate() {
+        // given
+        List<Integer> numbers1 = List.of(1, 2, 3);
+        List<Integer> numbers2 = List.of(1, 3, 4);
+        NumberSlot slot1 = new NumberSlot(numbers1);
+        NumberSlot slot2 = new NumberSlot(numbers2);
+        // when
+        BaseballCount count = slot1.calculate(slot2);
+        // then
+        Assertions.assertThat(count).isEqualTo(new BaseballCount(1, 1));
     }
 }

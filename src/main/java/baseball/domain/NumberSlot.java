@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class NumberSlot {
     public static final int MIN_RANGE = 1;
@@ -13,6 +14,30 @@ public class NumberSlot {
         validateNumbers(numbers);
         this.numbers = numbers;
     }
+
+    public BaseballCount calculate(NumberSlot slot) {
+        int strikeCount = countStrikes(slot);
+        int ballCount = countBalls(slot);
+        return new BaseballCount(strikeCount, ballCount);
+    }
+
+    private int countStrikes(NumberSlot slot) {
+        return (int) IntStream.range(0, SIZE)
+                .filter(index -> this.numbers.get(index).equals(slot.numbers.get(index)))
+                .count();
+    }
+
+    private int countBalls(NumberSlot slot) {
+        int ballCount = 0;
+        for (int i = 0; i < SIZE; i++) {
+            int number = numbers.get(i);
+            if (number != slot.numbers.get(i) && slot.numbers.contains(number)) {
+                ballCount++;
+            }
+        }
+        return ballCount;
+    }
+
 
     private void validateNumbers(List<Integer> numbers) {
         validateSize(numbers);
