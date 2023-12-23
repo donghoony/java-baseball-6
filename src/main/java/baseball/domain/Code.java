@@ -4,8 +4,7 @@ import java.util.Arrays;
 
 public enum Code {
     RETRY("1"),
-    EXIT("2")
-    ;
+    EXIT("2");
 
     private final String statusCode;
 

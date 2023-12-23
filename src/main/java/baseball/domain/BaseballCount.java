@@ -1,6 +1,6 @@
-
 package baseball.domain;
-public record BaseballCount (int strikeCount, int ballCount) {
+
+public record BaseballCount(int strikeCount, int ballCount) {
 
     public boolean isOut() {
         return strikeCount == NumberSlot.SIZE;
